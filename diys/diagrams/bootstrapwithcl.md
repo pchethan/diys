@@ -1,1 +1,1 @@
-![](bootstrapwithcl.png)
+![](bootstrapwithcl.svg)

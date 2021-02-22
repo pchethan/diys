@@ -70,7 +70,7 @@ and WEB-INF/lib/*.jar jars;
 stop
 
 |Runtime Environment|
-note right
+note left
 listeners may create a spring context
 end note
 
