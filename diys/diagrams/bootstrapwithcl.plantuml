@@ -1,0 +1,78 @@
+@startuml
+skinparam style strictuml
+skinparam defaultFontName Arial
+
+|Dev/Build|
+start
+:".class files";
+-> package;
+if ("jar/war/ear"?) equals (jar) then
+->jar deploy;
+|Runtime Environment|
+:RE Location;
+stop
+else
+->war deploy;
+|Container Environment|
+:webapp folder;
+stop
+endif
+
+
+|Runtime Environment|
+start
+-> service or 
+human runs;
+split
+:java -jar ...jar;
+split again
+:java -classpath ...jar:..jar mainClass;
+end split
+->JVM extracts to;
+:extracted folder;
+->JVM loads;
+:boot classloader
+with cp=JRE jars;
+->JVM loads child CL;
+:ext classloader 
+with cp=JRE ext jars;
+->JVM loads child CL;
+:App classloader
+with cp=App jar;
+->JVM calls AppCL.loadClass of;
+:main class;
+->JVM calls;
+:MainClass.main;
+note right
+apps can further load classloaders
+example: Spring Boot;
+end note
+-[hidden]->
+
+partition Container {
+:MainClass.main;
+-> JVM loads 
+child CL;
+:URL classloader;
+}
+stop
+
+|Container Environment|
+start
+->Container extracts to;
+:appname folder;
+:Container loads WebApp classloader 
+(child CL) with WEB-INF/classes/ dir 
+and WEB-INF/lib/*.jar jars;
+:Container loads Servlets with WCL;
+:Container inits Servlets;
+:Container loads listeners with WCL;
+stop
+
+|Runtime Environment|
+floating note right
+listeners may create a spring context
+end note
+
+
+@enduml

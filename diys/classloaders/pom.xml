@@ -62,7 +62,7 @@
         </profile>
     </profiles>
 
-    <packaging>pom</packaging>
+    <packaging>${packaging.type}</packaging>
 
     <build>
         <finalName>classloaders</finalName>
