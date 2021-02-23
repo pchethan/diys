@@ -60,13 +60,23 @@ stop
 |Container Environment|
 start
 ->Container extracts to;
-:appname folder;
-:Container loads WebApp classloader 
-(child CL) with WEB-INF/classes/ dir 
+#LightSkyBlue:appname folder;
+->Container loads child CL;
+#LightSkyBlue:WebApp classloader
+with cp=WEB-INF/classes/ dir
 and WEB-INF/lib/*.jar jars;
-:Container loads Servlets with WCL;
-:Container inits Servlets;
-:Container loads listeners with WCL;
+
+->Container creates;
+#LightSkyBlue:JavaEE Servlet context with WCL;
+->Container notifies;
+:App's Context listeners;
+->Container loads;
+:App's Servlets with WCL;
+:Container inits App's Servlets;
+:Listeners may load further containers
+like Spring;
+: load new business class from 
+WCL or container on top;
 stop
 
 |Runtime Environment|
