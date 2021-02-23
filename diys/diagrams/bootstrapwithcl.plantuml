@@ -4,7 +4,9 @@ skinparam defaultFontName Arial
 
 |Dev/Build|
 start
-:".class files";
+:".java" files;
+-> compile;
+:".class" files;
 -> package;
 if ("jar/war/ear"?) equals (jar) then
 ->jar deploy;
@@ -80,7 +82,7 @@ WCL or container on top;
 stop
 
 |Runtime Environment|
-note right
+floating note right
 listeners may create a spring context
 end note
 
