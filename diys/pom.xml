@@ -13,6 +13,7 @@
         <module>classloaders</module>
         <module>calculator</module>
         <module>diagrams</module>
+        <module>bytecode</module>
     </modules>
 
 

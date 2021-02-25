@@ -1,0 +1,149 @@
+Classfile /Users/pchethan/Documents/GitHub/diys/diys/helloworld/target/classes/com/example/HelloWorld.class
+  Last modified 25 Feb, 2021; size 1133 bytes
+  MD5 checksum 1a27f5a51bccaeab189c976420ef2dcb
+  Compiled from "HelloWorld.java"
+public class com.example.HelloWorld extends java.lang.ClassLoader implements java.io.Closeable
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #8.#40         // java/lang/ClassLoader."<init>":()V
+   #2 = Fieldref           #41.#42        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = String             #43            // Hello World
+   #4 = Methodref          #44.#45        // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #5 = Methodref          #8.#46         // java/lang/ClassLoader.loadClass:(Ljava/lang/String;Z)Ljava/lang/Class;
+   #6 = Fieldref           #7.#47         // com/example/HelloWorld.i:I
+   #7 = Class              #48            // com/example/HelloWorld
+   #8 = Class              #49            // java/lang/ClassLoader
+   #9 = Class              #50            // java/io/Closeable
+  #10 = Utf8               urlConnection
+  #11 = Utf8               Ljava/net/URLConnection;
+  #12 = Utf8               i
+  #13 = Utf8               I
+  #14 = Utf8               <init>
+  #15 = Utf8               ()V
+  #16 = Utf8               Code
+  #17 = Utf8               LineNumberTable
+  #18 = Utf8               LocalVariableTable
+  #19 = Utf8               this
+  #20 = Utf8               Lcom/example/HelloWorld;
+  #21 = Utf8               main
+  #22 = Utf8               ([Ljava/lang/String;)V
+  #23 = Utf8               args
+  #24 = Utf8               [Ljava/lang/String;
+  #25 = Utf8               loadClass
+  #26 = Utf8               (Ljava/lang/String;Z)Ljava/lang/Class;
+  #27 = Utf8               name
+  #28 = Utf8               Ljava/lang/String;
+  #29 = Utf8               resolve
+  #30 = Utf8               Z
+  #31 = Utf8               Exceptions
+  #32 = Class              #51            // java/lang/ClassNotFoundException
+  #33 = Utf8               Signature
+  #34 = Utf8               (Ljava/lang/String;Z)Ljava/lang/Class<*>;
+  #35 = Utf8               close
+  #36 = Class              #52            // java/io/IOException
+  #37 = Utf8               <clinit>
+  #38 = Utf8               SourceFile
+  #39 = Utf8               HelloWorld.java
+  #40 = NameAndType        #14:#15        // "<init>":()V
+  #41 = Class              #53            // java/lang/System
+  #42 = NameAndType        #54:#55        // out:Ljava/io/PrintStream;
+  #43 = Utf8               Hello World
+  #44 = Class              #56            // java/io/PrintStream
+  #45 = NameAndType        #57:#58        // println:(Ljava/lang/String;)V
+  #46 = NameAndType        #25:#26        // loadClass:(Ljava/lang/String;Z)Ljava/lang/Class;
+  #47 = NameAndType        #12:#13        // i:I
+  #48 = Utf8               com/example/HelloWorld
+  #49 = Utf8               java/lang/ClassLoader
+  #50 = Utf8               java/io/Closeable
+  #51 = Utf8               java/lang/ClassNotFoundException
+  #52 = Utf8               java/io/IOException
+  #53 = Utf8               java/lang/System
+  #54 = Utf8               out
+  #55 = Utf8               Ljava/io/PrintStream;
+  #56 = Utf8               java/io/PrintStream
+  #57 = Utf8               println
+  #58 = Utf8               (Ljava/lang/String;)V
+{
+  public java.net.URLConnection urlConnection;
+    descriptor: Ljava/net/URLConnection;
+    flags: ACC_PUBLIC
+
+  public com.example.HelloWorld();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/ClassLoader."<init>":()V
+         4: return
+      LineNumberTable:
+        line 8: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/example/HelloWorld;
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: ldc           #3                  // String Hello World
+         5: invokevirtual #4                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+         8: return
+      LineNumberTable:
+        line 15: 0
+        line 16: 8
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       9     0  args   [Ljava/lang/String;
+
+  protected java.lang.Class<?> loadClass(java.lang.String, boolean) throws java.lang.ClassNotFoundException;
+    descriptor: (Ljava/lang/String;Z)Ljava/lang/Class;
+    flags: ACC_PROTECTED
+    Code:
+      stack=3, locals=3, args_size=3
+         0: aload_0
+         1: aload_1
+         2: iload_2
+         3: invokespecial #5                  // Method java/lang/ClassLoader.loadClass:(Ljava/lang/String;Z)Ljava/lang/Class;
+         6: areturn
+      LineNumberTable:
+        line 21: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       7     0  this   Lcom/example/HelloWorld;
+            0       7     1  name   Ljava/lang/String;
+            0       7     2 resolve   Z
+    Exceptions:
+      throws java.lang.ClassNotFoundException
+    Signature: #34                          // (Ljava/lang/String;Z)Ljava/lang/Class<*>;
+
+  public void close() throws java.io.IOException;
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=0, locals=1, args_size=1
+         0: return
+      LineNumberTable:
+        line 27: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       1     0  this   Lcom/example/HelloWorld;
+    Exceptions:
+      throws java.io.IOException
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: sipush        181
+         3: putstatic     #6                  // Field i:I
+         6: return
+      LineNumberTable:
+        line 12: 0
+}
+SourceFile: "HelloWorld.java"
