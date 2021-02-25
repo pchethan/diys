@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLConnection;
 
-public class HelloWorld extends ClassLoader implements Closeable {
+public class HelloByteCode extends ClassLoader implements Closeable {
 
     public URLConnection urlConnection;
 

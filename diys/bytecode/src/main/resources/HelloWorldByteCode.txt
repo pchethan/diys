@@ -2,7 +2,7 @@ Classfile /Users/pchethan/Documents/GitHub/diys/diys/helloworld/target/classes/c
   Last modified 25 Feb, 2021; size 1133 bytes
   MD5 checksum 1a27f5a51bccaeab189c976420ef2dcb
   Compiled from "HelloWorld.java"
-public class com.example.HelloWorld extends java.lang.ClassLoader implements java.io.Closeable
+public class com.example.HelloByteCode extends java.lang.ClassLoader implements java.io.Closeable
   minor version: 0
   major version: 52
   flags: ACC_PUBLIC, ACC_SUPER
@@ -70,7 +70,7 @@ Constant pool:
     descriptor: Ljava/net/URLConnection;
     flags: ACC_PUBLIC
 
-  public com.example.HelloWorld();
+  public com.example.HelloByteCode();
     descriptor: ()V
     flags: ACC_PUBLIC
     Code:
