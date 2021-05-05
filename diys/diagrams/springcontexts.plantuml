@@ -1,0 +1,183 @@
+@startuml
+
+package Spring_BeanFactory_Interfaces {
+interface ListableBeanFactory
+}
+
+package Spring_Context_Interfaces {
+
+interface ApplicationContext extends ListableBeanFactory {
+    Proxy for bean factory, resource loader etc
+}
+
+interface ConfigurableApplicationContext extends ApplicationContext{
+    API to set/add class loader, parent, env, bean factory PP,
+     app listener
+    ..
+    Key API refresh()
+}
+
+interface WebApplicationContext #line:green;back:LightYellow;line.bold extends ApplicationContext{
+    ServletConfig=getServletContext()
+    defines bean names for storing Config attributes
+    ..
+}
+
+interface ConfigurableWebApplicationContext #line:green;back:LightYellow;line.bold extends ConfigurableApplicationContext, WebApplicationContext {
+    setServletContext, setServletConfig, getServletConfig
+    setConfigLocation(s) - loc of configs like bean def XMLs
+     (can be set by helpers who read web.xml)
+}
+
+}
+
+package Spring_Context_Abstract <<Rectangle>> {
+
+abstract AbstractApplicationContext extends ConfigurableApplicationContext {
+Skeleton impl with home for parent, env,
+bean factory pps, app listeners
+..
+Impl refresh() by obtain bean factory from derived
+..
+refresh calls derived postProcessBeanFactory()
+..
+Demands derived - refreshBeanFactory(), getBeanFactory(),
+closeBeanFactory()
+..
+}
+
+
+
+abstract AbstractRefreshableApplicationContext extends AbstractApplicationContext {
+Skeleton impl with home for parent, env,
+bean factory pps, app listeners
+..
+Impl refresh() by obtain bean factory from derived
+..
+refresh calls derived postProcessBeanFactory()
+..
+Demands derived - refreshBeanFactory(), getBeanFactory(),
+ closeBeanFactory()
+..
+}
+
+abstract AbstractRefreshableConfigApplicationContext extends AbstractRefreshableApplicationContext {
+    Simple impl to set and store config locations
+}
+
+abstract AbstractXmlApplicationContext extends AbstractRefreshableConfigApplicationContext {
+Implements loadBeanDefinitions() - which loads defs from
+config locations in XML format and/or resources from derived class
+..
+Requires getConfigResources() from derived
+}
+
+
+abstract AbstractRefreshableWebApplicationContext #line:green;back:LightYellow;line.bold extends AbstractRefreshableConfigApplicationContext, ConfigurableWebApplicationContext {
+Similar to base; adds "web" impls
+Impl postProcessBeanFactory() to configure bean
+ factory and add bean PPs
+}
+
+}
+
+package Spring_Context_Concretes <<Rectangle>> {
+
+class GenericApplicationContext implements AbstractApplicationContext {
+Concrete context
+..
+Owns DefaultListableBeanFactory which is also
+BeanDefinitionRegistry
+..
+Proxies BDR api calls to above factory
+..
+Impl all demanded apis above
+..
+Sugg Usage: bean defs can be fed from utils like
+XmlBeanDefinitionReader and PropertiesBeanDefinitionReader.
+}
+
+class GenericWebApplicationContext #line:green;back:LightYellow;line.bold extends GenericApplicationContext implements ConfigurableWebApplicationContext {
+    Impls "web" apis (setConfigLoc.. not supported)
+    ..
+    Impl postProcessBeanFactory() to configure beanfactory,
+    add web related beans etc
+}
+
+class AnnotationConfigApplicationContext extends GenericApplicationContext {
+Concrete
+..
+Bean def registration is internalised now.
+Specialized to scan/add bean defs from
+@Configuration/@Bean annotations recursively
+by scanning base packages
+(using ClassPathBeanDefinitionScanner)
+..
+Role of AnnotatedBeanDefinitionReader?
+}
+
+class ClassPathXmlApplicationContext implements AbstractXmlApplicationContext {
+Implements getConfigResources() - interprets
+plain paths as class path resource names.
+..
+Useful for test harnesses as well as for
+application contexts embedded within JARs.
+..
+has APIs such that both indiv resource paths
+and config locations can be set
+}
+
+class FileSystemXmlApplicationContext implements AbstractXmlApplicationContext {
+}
+
+class AnnotationConfigWebApplicationContext #line:green;back:LightYellow;line.bold implements AbstractRefreshableWebApplicationContext {
+Similar to AnnotationConfigApplicationContext
+Implements loadBeanDefinitions() - which uses
+AnnotatedBeanDefinitionReader and
+ ClassPathBeanDefinitionScanner to scan and
+ load beans to bean factory
+..
+}
+
+class XmlWebApplicationContext #line:green;back:LightYellow;line.bold extends AbstractRefreshableWebApplicationContext {
+Similar to AnnotationConfigWebApplicationContext
+..
+Implements loadBeanDefinitions() using XML based reader
+}
+
+
+
+
+}
+
+package SpringBoot_Context_Interfaces <<Rectangle>> {
+
+interface WebServerApplicationContext #line:DarkBlue;back:LightYellow;line.bold extends ApplicationContext {
+Defines that the context uses WebServer representing an embedded webserver.
+Derived must provide the emb server impl
+..
+}
+
+interface ConfigurableWebServerApplicationContext #line:DarkBlue;back:LightYellow;line.bold extends WebServerApplicationContext,  ConfigurableApplicationContext {
+Ability to set webserver namespace
+}
+
+}
+
+package SpringBoot_Context_Concretes {
+class ServletWebServerApplicationContext #line:DarkBlue;back:LightYellow;line.bold extends GenericWebApplicationContext implements ConfigurableWebServerApplicationContext {
+Overrides postProcessBeanFactory() to config bean factory
+with onRefresh() hook, embedded webserver is created
+..
+}
+
+class AnnotationConfigServletWebServerApplicationContext #line:DarkBlue;back:LightYellow;line.bold extends ServletWebServerApplicationContext {
+Similar to AnnotationConfigApplicationContext
+..
+Implements postProcessBeanFactory() - which uses ClassPathBeanDefinitionScanner
+to scan and AnnotatedBeanDefinitionReader to read
+}
+
+}
+
+@enduml
