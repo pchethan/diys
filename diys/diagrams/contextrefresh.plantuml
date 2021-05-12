@@ -1,0 +1,161 @@
+@startuml Context Refresh
+skinparam responseMessageBelowArrow true
+
+actor User
+participant AbstractApplicationContext as AAC
+participant Derived
+participant BeanFactory
+participant BeanDefinitionRegistryPostProcessor as BDRPP
+participant BeanFactoryPostProcessor as BFPP
+
+autoactivate on
+User -> AAC: refresh
+
+AAC -> AAC : prepareRefresh*
+deactivate
+
+AAC -> AAC : obtainFreshBeanFactory
+
+AAC -> Derived : refreshBeanFactory
+AAC <-- Derived
+
+AAC -> Derived : getBeanFactory
+AAC <-- Derived
+
+deactivate
+
+AAC -> AAC : prepareBeanFactory(beanFactory)*
+note right
+Configures
+Beanfactory
+end note
+deactivate
+
+AAC -> Derived : postProcessBeanFactory(beanFactory)*
+note right of AAC
+Modify the application context's internal bean factory after its standard
+initialization. All bean definitions will have been loaded, but no beans
+will have been instantiated yet. This allows for registering special
+BeanPostProcessors etc in certain ApplicationContext implementations.
+end note
+AAC <-- Derived
+
+AAC -> AAC : invokeBeanFactoryPostProcessors(bf, list<> bfpp)
+loop
+AAC -> BDRPP : postProcessBeanDefinitionRegistry(bfpp)
+AAC <-- BDRPP
+end
+
+
+AAC -> BeanFactory : getBeanNamesForType(bdrpp.class)
+AAC <-- BeanFactory : list
+
+note right of AAC
+select priority ordered bdrpp from list
+sort them
+and add after bdrpps from arg
+end note
+
+loop
+AAC -> BDRPP : postProcessBeanDefinitionRegistry(bf)
+AAC <-- BDRPP
+end
+
+note right of AAC
+select ordered bdrpp from list
+sort them
+and add after bdrpps from arg
+end note
+
+AAC -> BeanFactory : getBeanNamesForType(bdrpp.class)
+AAC <-- BeanFactory : list
+
+loop
+AAC -> BDRPP : postProcessBeanDefinitionRegistry(bf)
+AAC <-- BDRPP
+end
+
+loop  until all bdrpps are done
+
+note right of AAC
+select bdrpp from list
+sort them
+and add after bdrpps from arg
+end note
+
+AAC -> BeanFactory : getBeanNamesForType(bdrpp.class)
+AAC <-- BeanFactory : list
+
+loop
+AAC -> BDRPP : postProcessBeanDefinitionRegistry(bf)
+AAC <-- BDRPP
+end
+
+end
+
+|||
+
+AAC -> BeanFactory : getBeanNamesForType(BFPP.class)
+AAC <-- BeanFactory : list
+
+note right of AAC
+segregate priorityordered, ordered 
+and rest of bfpps
+end note
+
+group Sort each category and call
+loop
+AAC -> BFPP : postProcessBeanFactory
+AAC <-- BFPP
+end
+end
+
+deactivate
+
+|||
+|||
+
+AAC -> AAC : registerBeanPostProcessors
+
+AAC -> BeanFactory : getBeanNamesForType(BPP.class)
+AAC <-- BeanFactory : list
+
+note right of AAC
+segregate priorityordered, ordered 
+and rest of bpps
+end note
+
+group Sort each category and call
+loop
+AAC -> BeanFactory : addBeanPostProcessor(bpp)
+AAC <-- BeanFactory
+end
+end
+
+AAC -> BeanFactory : addBeanPostProcessor(ApplicationListenerDetector)
+AAC <-- BeanFactory
+deactivate
+
+
+AAC -> Derived : onRefresh()
+AAC <-- Derived
+
+AAC -> BeanFactory : freezeConfiguration
+AAC <-- BeanFactory
+
+AAC -> BeanFactory : preInstantiateSingletons
+AAC <-- BeanFactory
+
+note right of AAC
+Create DefaultLifecycleProcessor
+and add to BeanFactory
+ 
+Call lifeCycleProc...onRefresh()
+ 
+publishEvent(ContextRefreshedEvent)
+end note
+
+return void
+
+
+@enduml
