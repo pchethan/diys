@@ -1,0 +1,54 @@
+TOMCAT Launcher
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+WebappClassLoader context: classloaders delegate: false ----------> Parent Classloader: java.net.URLClassLoader@1c20c684
+[file:/usr/local/apache-tomcat-8.0.32/webapps/classloaders/WEB-INF/classes/
+file:/usr/local/apache-tomcat-8.0.32/webapps/classloaders/WEB-INF/lib/slf4j-api-1.7.25.jar
+file:/usr/local/apache-tomcat-8.0.32/webapps/classloaders/WEB-INF/lib/logback-classic-1.2.3.jar
+file:/usr/local/apache-tomcat-8.0.32/webapps/classloaders/WEB-INF/lib/logback-core-1.2.3.jar]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+java.net.URLClassLoader@1c20c684
+[file:/usr/local/apache-tomcat-8.0.32/lib/
+file:/usr/local/apache-tomcat-8.0.32/lib/el-api.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-i18n-es.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-websocket.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/jasper.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/jasper-el.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-util.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/catalina-storeconfig.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/jsp-api.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/mylib.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/catalina-tribes.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/catalina.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-jni.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/websocket-api.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-coyote.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/catalina-ha.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-api.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/ecj-4.4.2.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/annotations-api.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/catalina-ant.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/servlet-api.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-util-scan.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-i18n-ja.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-jdbc.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-i18n-fr.jar
+file:/usr/local/apache-tomcat-8.0.32/lib/tomcat-dbcp.jar]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+sun.misc.Launcher$AppClassLoader@70dea4e
+[file:/usr/local/apache-tomcat-8.0.32/bin/bootstrap.jar 
+file:/usr/local/apache-tomcat-8.0.32/bin/tomcat-juli.jar]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+sun.misc.Launcher$ExtClassLoader@6be46e8f
+[file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/sunec.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/nashorn.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/cldrdata.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/dnsns.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/localedata.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/sunjce_provider.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/sunpkcs11.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/jaccess.jar
+file:/Users/pchethan/.sdkman/candidates/java/8.0.282.hs-adpt/jre/lib/ext/zipfs.jar]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Bootstrap classloader or null
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
